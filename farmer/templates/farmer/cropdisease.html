@@ -1,0 +1,31 @@
+{% extends 'farmer/basic.html' %}
+{% block title %}Crop Disease Prediction{% endblock %}
+
+{% block css %}
+.cropdis{
+    margin-top:90px;
+}
+{% endblock %}
+{% block body %}
+<div class="container cropdis">
+    <h2 class="mt-2">Crop Disease Prediction</h2>
+        <form action="/farmer/cropdisease" method="POST" enctype="multipart/form-data">{% csrf_token %}
+
+            <div class="mb-3 form-row">
+                <label>Crop Name</label>
+                    <input class="form-control" name="name" id="name" placeholder="Crop Name" required />    
+            </div>
+            <hr>
+            <div class="mb-3 form-row" > 
+                <label>Crop Image</label>
+                <input type="file" class="form-control" id="default-btn" name="myfile" />
+            </div>
+            <input class="btn btn-primary" type="submit" value="Send" />
+            <div >
+                <h2> Prediction Output:</h2>
+                <h3> {{preds}} </h3>
+            </div>
+    </form>
+    
+</div>
+{% endblock %}

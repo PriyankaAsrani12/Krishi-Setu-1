@@ -1,0 +1,150 @@
+{% extends 'farmer/basic.html' %} {% block title %}CropInfo{% endblock %} {% block body %}
+<style>
+    .mt-3,
+    .my-3 {
+        margin-top: 7rem!important;
+    }
+    
+    .card-img-top {
+        height: 200px;
+    }
+</style>
+<div class="container mt-3">
+    <h2 class="text-center mb-3">Crop Information</h2>
+    <div class="row">
+        <div class="card col-xl-3" style="width: 18rem;">
+            <img src="https://i1.wp.com/www.odigrocy.com/wp-content/uploads/2019/06/images-25-1.jpeg?fit=644%2C476" class="card-img-top" alt="...">
+            <div class="card-body">
+                <h5 class="card-title">Rice</h5>
+                <!-- Button trigger modal -->
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
+                    Know More
+                </button>
+                <!-- The Modal -->
+                <div class="modal" id="myModal">
+                    <div class="modal-dialog modal-dialog-scrollable">
+                        <div class="modal-content">
+                            <!-- Modal Header -->
+                            <div class="modal-header">
+                                <h1 class="modal-title">Rice</h1>
+                                <button type="button" class="close" data-dismiss="modal">×</button>
+                            </div>
+                            <!-- Modal body -->
+                            <div class="modal-body">
+                                <p>Rice is predominantly a Kharif or crop. It covers one third of total cultivated area of India. It provides food to more than half of the Indian population.</p>
+                                <p>Rice is produced in almost all states. <em><span style="text-decoration: underline;">Top three producer states are West Bengal, Punjab and Uttar Pradesh</span></em>. Other rice growing states include Tamilnadu, Andhra Pradesh,
+                                    Bihar, Jharkhand, Uttarakhand, Chhattisgarh, Odisha, Uttar Pradesh, Karnataka, Assam and Maharashtra. It is also grown in Haryana, Madhya Pradesh, Kerala, Gujarat and Kashmir Valley.<br />
+                                    <img class="aligncenter jetpack-lazy-image" src="https://www.gktoday.in/wp-content/uploads/2014/12/Rice-growing-areas-in-India.png"><noscript><img class=" aligncenter" src="https://www.gktoday.in/wp-content/uploads/2014/12/Rice-growing-areas-in-India.png" alt="" /></noscript></p>
+                            </div>
+                            <!-- Modal footer -->
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="card col-xl-3" style="width: 18rem;">
+            <img src="https://previews.123rf.com/images/dabjola/dabjola1204/dabjola120400010/12945524-dry-and-raw-wheat-as-background.jpg" class="card-img-top" alt="...">
+            <div class="card-body">
+                <h5 class="card-title">Wheat</h5>
+                <!-- Button trigger modal -->
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal2">
+                    Know More
+                </button>
+                <!-- The Modal -->
+                <div class="modal" id="myModal2">
+                    <div class="modal-dialog modal-dialog-scrollable">
+                        <div class="modal-content">
+                            <!-- Modal Header -->
+                            <div class="modal-header">
+                                <h1 class="modal-title">Wheat</h1>
+                                <button type="button" class="close" data-dismiss="modal">×</button>
+                            </div>
+                            <!-- Modal body -->
+                            <div class="modal-body">
+                                <p>Wheat is the second most important crop of India after Rice. It’s a Rabi Crop. It is the staple food in north and north western India. It’s a winter crop and needs low temperature. Ideal temperature for wheat cultivation
+                                    is between 10-15°C at the time of sowing and 21-26°C at the time of harvesting. Wheat thrives well in less than 100 cm and more than 75 cm rainfall. The most suitable soil for cultivation of wheat is well drained fertile
+                                    loamy soil and clayey soil. Plain areas are most suitable. The wheat crop is highly mechanization oriented and may need less labour. Top three states producing Wheat are Uttar Pradesh, Punjab and Haryana.<br />
+                                    <img class="aligncenter jetpack-lazy-image" src="https://www.gktoday.in/wp-content/uploads/2014/12/Major-Wheat-Producing-areas-of-India.png"><noscript><img class="aligncenter" src="https://www.gktoday.in/wp-content/uploads/2014/12/Major-Wheat-Producing-areas-of-India.png" alt=""></noscript></p>
+                            </div>
+                            <!-- Modal footer -->
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="card col-xl-3" style="width: 18rem;">
+            <img src="https://previews.123rf.com/images/youngrattanachat/youngrattanachat1802/youngrattanachat180200084/95991185-raw-cotton-in-basket.jpg" class="card-img-top" alt="...">
+            <div class="card-body">
+                <h5 class="card-title">Cotton</h5>
+                <!-- Button trigger modal -->
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal3">
+                    Know More
+                </button>
+                <!-- The Modal -->
+                <div class="modal" id="myModal3">
+                    <div class="modal-dialog modal-dialog-scrollable">
+                        <div class="modal-content">
+                            <!-- Modal Header -->
+                            <div class="modal-header">
+                                <h1 class="modal-title">Cotton</h1>
+                                <button type="button" class="close" data-dismiss="modal">×</button>
+                            </div>
+                            <!-- Modal body -->
+                            <div class="modal-body">
+                                <p>Cotton is the most important fibre crop and cotton seed is used as a vegetable oil and a part of fodder for milch cattle for better milk production. Cotton is a Kharif Crop and grows in tropical and subtropical areas. Cotton
+                                    requires modest rainfall and in India, it is one of the predominant rainfed crops. Cotton requires uniformly high temperature (21°C to 30°C). It grows in areas having at least 210 frost free days in a year.<br /> Optimum
+                                    soil for cotton is the Black soils of Deccan and Malwa plateau. Also grows well in alluvial soils of the Satluj-Ganga plain and red and laterite soils of the peninsular region. Cotton growing is known as less mechanised
+                                    farming in India so needs cheap labour. Main cotton producing states are Gujarat, Maharashtra and Andhra Pradesh.<br />
+                                    <img class="aligncenter jetpack-lazy-image" src="https://www.gktoday.in/wp-content/uploads/2014/12/Major-Cotton-Growing-areas-in-India.png"><noscript><img class="aligncenter" src="https://www.gktoday.in/wp-content/uploads/2014/12/Major-Cotton-Growing-areas-in-India.png"></noscript></p>
+                            </div>
+                            <!-- Modal footer -->
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="card col-xl-3" style="width: 18rem;">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTlBT63TU5HRA8xduHGAF79pBrNFJjZtNTe0g&usqp=CAU" class="card-img-top" alt="...">
+            <div class="card-body">
+                <h5 class="card-title">Coffee</h5>
+                <!-- Button trigger modal -->
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal4">
+                    Know More
+                </button>
+                <!-- The Modal -->
+                <div class="modal" id="myModal4">
+                    <div class="modal-dialog modal-dialog-scrollable">
+                        <div class="modal-content">
+                            <!-- Modal Header -->
+                            <div class="modal-header">
+                                <h1 class="modal-title">Coffee</h1>
+                                <button type="button" class="close" data-dismiss="modal">×</button>
+                            </div>
+                            <!-- Modal body -->
+                            <div class="modal-body">
+                                <p>Coffee needs hot and humid climate with temperature varying between 15°C and 28°C. It is generally grown under shady trees. Strong sun shine, high temperature above 30°C, frost and snowfall are harmful for coffee cultivation.
+                                    Dry weather is necessary at the time of ripening of berries. Rainfall between 150 to 250 cm is favourable for coffee cultivation. Well drained, rich friable loamy soil with humus and minerals are ideal for coffee cultivation.
+                                    Coffee also needs cheap and skilled labour. Major coffee producing states of India are Karnataka, Kerala and Tamil Nadu.<br />
+                                    <img class="aligncenter jetpack-lazy-image" src="https://www.mapsofindia.com/indiaagriculture/coffee-production-areas-in-india.jpg" style="max-width: 450px;"></p>
+                            </div>
+                            <!-- Modal footer -->
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,62 @@
+{% extends 'shop/basic.html' %} {% block title %}News{% endblock %} {% block newsactive %}active{% endblock newsactive %} {% block body %} {% load static %}
+<h2 class="news" style="margin-top: 8%; text-align: center;">News</h2>
+<div class="container">
+    {% for i in news.articles %}
+    <div class="card" style="width: 360px; display: inline-block; padding-bottom: 2px;">
+        <img class="card-img-top" src='{{i.urlToImage}}' onerror="this.src = 'https://m.hindustantimes.com/rf/image_size_640x362/HT/p2/2016/11/21/Pictures/chandigarh-outskirts-hindustan-ludhiana-bothgarh-working-chandigarh_31b58baa-b004-11e6-97d4-77e8d9863aa4.jpg';"
+            height=300px width=300px>
+        <div class="card-body">
+            <h5 class="card-title">{{i.title|slice:"0:53"}}...</h5>
+            <a href="{{i.url}}" class="btn btn-primary"><img src="https://img.icons8.com/emoji/25/000000/rolled-up-newspaper.png" /> Full News</a>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %} {% block js %}
+<script>
+    $('#popcart').popover();
+
+    if (localStorage.getItem('cart') == null) {
+        var cart = {};
+    } else {
+        cart = JSON.parse(localStorage.getItem('cart'));
+        document.getElementById('cart').innerHTML = Object.keys(cart).length;
+        updatecart(cart);
+    }
+
+    function clearCart() {
+        cart = JSON.parse(localStorage.getItem('cart'));
+        // for (var item in cart) {
+        //     document.getElementById('div' + item).innerHTML = '<button id="' + item + '"class="btn btn-primary">Add to Cart</button>'
+        // }
+        localStorage.clear()
+        cart = {};
+        updatecart(cart);
+    }
+
+    function updatecart(cart) {
+        var sum = 0;
+        for (var k in cart) {
+            sum = sum + cart[k][0];
+        }
+        localStorage.setItem('cart', JSON.stringify(cart))
+        document.getElementById('cart').innerHTML = sum;
+        updatePopover(cart);
+    }
+
+
+    function updatePopover(cart) {
+        var popStr = ""
+        popStr = popStr + "<h5>Cart for your items in my shopping cart</h5><div class='mx-2 my-2'>"
+        var i = 1;
+        for (var item in cart) {
+            popStr = popStr + "<b>" + i + " " + "</b>."
+            popStr = popStr + cart[item][1] + " -- Qty: " + cart[item][0] + " -- price: " + cart[item][2] + "/kg" + '<br>';
+            i = i + 1
+        }
+        popStr = popStr + "</div><a href='/shop/checkout'><button class='btn btn-primary mx-2' id='clearCart'>Checkout</button></a><button class='btn btn-primary' onclick='clearCart()' id='clearCart'>Clear Cart</button>"
+        document.getElementById('popcart').setAttribute('data-content', popStr)
+        $('#popcart').popover("show");
+    }
+</script>
+{% endblock %}

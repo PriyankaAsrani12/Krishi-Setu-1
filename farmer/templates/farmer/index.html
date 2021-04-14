@@ -1,0 +1,103 @@
+{% extends 'farmer/basic.html' %} {% block title %}Home Page{% endblock %} {% block homeactive %}active{% endblock homeactive %} {% block body %}
+<style>
+    .cover {
+        position: relative;
+    }
+    
+    .lead {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        color: black;
+    }
+</style>
+{% load static %}
+<div class="text-center">
+    <div class="container-fluid" style='margin-top:5%;'>
+        <main role="main" class="inner cover">
+            <img src="{% static 'main.jpg' %}" style="width:100%; height:auto;">
+            <!-- <img src="https://thumbs.dreamstime.com/b/jasmine-rice-farm-white-background-viewed-thailand-61358376.jpg" style="width:100%; height:auto;"> -->
+            <p class="lead">
+                <a href="/farmer/about" class="btn btn-lg btn-primary">Learn more</a>
+            </p>
+        </main>
+    </div>
+</div>
+<div class="container my-4 currentmarket">
+    <div class="card">
+        <div class="card-body">
+            <h5><strong>Get Current Market Price of all products</strong></h5>
+            <hr>
+            <div class="moduletable">
+                <h6>Live Mandi Price</h6>
+                <iframe id="blockrandom-117" src="https://agmarknet.gov.in/agnew/namticker.aspx" width="100%" height="50" scrolling="auto" frameborder="1" title="Live Mandi Price" class="wrapper">
+                    No iframes
+                </iframe>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container my-5">
+    <div class="row">
+        <div class="col-sm-6">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title"><strong>Crop Disease Prediction</strong></h5>
+                    <hr>
+                    <div class="card-body">
+                        <img src="https://content.iospress.com/media/ifs/2019/37-3/ifs-37-3-ifs190184/ifs-37-ifs190184-g006.jpg?width=400" class="card-img-top" alt="..." height="300px" width="300px">
+                        <h5 class="card-title">Crop Disease Prediction</h5>
+                        <p class="card-text">Find out whether your crop is affected from any disease or not.</p>
+                        <a href="/farmer/cropdisease" class="btn btn-primary">Predict</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-6">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title"><strong>Crop Information</strong></h5>
+                    <hr>
+                    <div class="card-body">
+                        <img src="https://image.shutterstock.com/image-photo/variety-popular-farmers-market-fruits-260nw-332192138.jpg" class="card-img-top" alt="..." height="300px" width="300px">
+                        <h5 class="card-title">Crop Information</h5>
+                        <p class="card-text">Get information regarding various crops.</p>
+                        <a href="/farmer/cropinfo" class="btn btn-primary">Get Info</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- <div class="row">
+        <div class="col-sm-6">
+            <div class="card mt-5">
+                <div class="card-body">
+                    <h5 class="card-title"><strong>News</strong></h5>
+                    <hr>
+                    <div class="card-body">
+                        <img src="https://cdn.britannica.com/25/93825-050-D1300547/collection-newspapers.jpg" class="card-img-top" alt="...">
+                        <h5 class="card-title">News</h5>
+                        <p class="card-text">Get current farm related news.</p>
+                        <a href="/farmer/news" class="btn btn-primary">Get News</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-6">
+            <div class="card mt-5">
+                <div class="card-body">
+                    <h5 class="card-title"><strong>Tutorials</strong></h5>
+                    <hr>
+                    <div class="card-body">
+                        <img src="https://www.successsign.com/images/video.jpg" class="card-img-top" alt="...">
+                        <h5 class="card-title">Tutorials</h5>
+                        <p class="card-text">Watch various tutorials related to farming.</p>
+                        <a href="/farmer/tutorials" class="btn btn-primary">Get Tutorials</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div> -->
+</div>
+{% endblock %}

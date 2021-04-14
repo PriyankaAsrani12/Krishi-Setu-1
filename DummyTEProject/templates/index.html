@@ -1,0 +1,26 @@
+{% extends 'basic.html' %}
+{% block title %}Main Page{% endblock %}
+{% block css %}
+      body{
+        background: #3E5151;  /* fallback for old browsers */
+        background: -webkit-linear-gradient(to right, #DECBA4, #3E5151);  /* Chrome 10-25, Safari 5.1-6 */
+        background: linear-gradient(to right, #DECBA4, #3E5151); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+      }
+      #landing-header {
+          z-index: 1;
+          position: relative;
+          text-align: center;
+          padding-top: 40vh;
+      }
+      #landing-header h1 {
+          color: #fff;
+      }
+{% endblock %}
+{% block body %}
+    <div id="landing-header">
+      <h1>Welcome to Krishi Setu!</h1>
+      <a href="/shop/login" class="btn btn-lg btn-info">Customer</a>
+      <a href="/farmer/login" class="btn btn-lg btn-info">Farmer</a>
+    </div>
+{% endblock %}

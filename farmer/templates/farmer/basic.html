@@ -1,0 +1,201 @@
+<!doctype html>
+<html lang="{{ LANGUAGE_CODE }}">
+
+<head>
+    {% load static %}
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.13.0/css/all.css">
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Catamaran:wght@500&display=swap" rel="stylesheet">
+    <link rel="icon" href="https://img.icons8.com/plasticine/25/000000/sprout.png">
+    <link rel="stylesheet" href="{% static 'basic.css'%}">
+    <title>{% block title %} {% endblock %}</title>
+    <style>
+        {
+            % block css %
+        }
+        
+        {
+            % endblock %
+        }
+    </style>
+</head>
+
+<body>
+    <div id="loader" class="load"></div>
+    <header class="header">
+        <nav class="navbar navbar-expand-lg fixed-top py-3">
+            <div class="container">
+                <a href="/" class="navbar-brand text-uppercase font-weight-bold"><img src="https://img.icons8.com/plasticine/25/000000/sprout.png" style="max-height: 25px; max-width: 25px" /> Krishi Setu</a>
+                <button type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler navbar-toggler"><i class="fa fa-bars"></i></button>
+                <div id="navbarSupportedContent" class="collapse navbar-collapse">
+                    <ul class="navbar-nav mr-auto">
+                        <li class="nav-item {% block homeactive %}{% endblock homeactive %}">
+                            <a class="nav-link text-uppercase font-weight-bold" href="/farmer">Home</a>
+                        </li>
+                        <li class="nav-item {% block aboutactive %}{% endblock aboutactive %}"><a href="/farmer/about" class="nav-link text-uppercase font-weight-bold">About</a></li>
+                        <li class="nav-item {% block dashboardactive %}{% endblock dashboardactive %}">
+                            <a class="nav-link text-uppercase font-weight-bold" href="/farmer/dashboard">Dashboard</a>
+                        </li>
+                        <li class="nav-item {% block newsactive %}{% endblock newsactive %}">
+                            <a class="nav-link text-uppercase font-weight-bold" href="/farmer/news">News</a>
+                        </li>
+                        <li class="nav-item {% block tutoactive %}{% endblock tutoactive %}">
+                            <a class="nav-link text-uppercase font-weight-bold" href="/farmer/tutorials">Tutorials</a>
+                        </li>
+                        <li class="nav-item {% block contactactive %}{% endblock contactactive %}"><a href="/farmer/contact" class="nav-link text-uppercase font-weight-bold">Contact</a></li>
+                    </ul>
+                    <ul class="navbar-nav">
+                        {% if user.is_authenticated %}
+                            <li class="nav-item {% block logout %}{% endblock logout %} form-inline my-2 my-lg-0">
+                            <a class="nav-link text-uppercase font-weight-bold" href="/farmer/logout">Logout</a>
+                        {% else %}
+                        <li class="nav-item {% block loginactive %}{% endblock loginactive %} form-inline my-2 my-lg-0">
+                            <a class="nav-link text-uppercase font-weight-bold" href="/farmer/login">Login</a>
+
+                        </li>
+                        {% endif %}
+                        {% if user.is_authenticated %}
+                            Hello, {{ user.username }}
+                        {% else %}
+                        <li class="nav-item {% block signupactive %}{% endblock signupactive %} form-inline my-2 my-lg-0">
+                            <a class="nav-link text-uppercase font-weight-bold" href="/farmer/signup">SignUp</a>
+                        </li>
+                        {% endif %}
+                        <li class="nav-item {% block addproductactive %}{% endblock addproductactive %} form-inline my-2 my-lg-0">
+                            <a class="nav-link text-uppercase font-weight-bold" href="/farmer/addproduct">Add Product</a>
+                        </li>
+                        <li>
+                            <div id="google_translate_element"></div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+    {% for message in messages %}
+   <div class="alert alert-{{message.tags}} mb-0 alert-dismissible fade show" role="alert">
+  <strong>Message: </strong> {{message}}
+  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+    {% endfor %}
+    {% block body %} {% endblock %}
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
+    <script>
+        document.onreadystatechange = function() {
+            if (document.readyState !== "complete") {
+                document.querySelector(
+                    "body").style.visibility = "hidden";
+                document.querySelector(
+                    "#loader").style.visibility = "visible";
+            } else {
+                document.querySelector(
+                    "#loader").style.display = "none";
+                document.querySelector(
+                    "body").style.visibility = "visible";
+            }
+        };
+        $(function() {
+            $(window).on('scroll', function() {
+                if ($(window).scrollTop() > 10) {
+                    $('.navbar').addClass('active');
+                } else {
+                    $('.navbar').removeClass('active');
+                }
+            });
+        });
+    </script>
+    <script type="text/javascript">
+        // Custom Scripts
+
+        function googleTranslateElementInit() {
+            new google.translate.TranslateElement({
+                pageLanguage: 'en'
+            }, 'google_translate_element');
+        }
+
+
+        // Minified Scripts
+        (function() {
+            var gtConstEvalStartTime = new Date();
+
+            function d(b) {
+                var a = document.getElementsByTagName("head")[0];
+                a || (a = document.body.parentNode.appendChild(document.createElement("head")));
+                a.appendChild(b)
+            }
+
+            function _loadJs(b) {
+                var a = document.createElement("script");
+                a.type = "text/javascript";
+                a.charset = "UTF-8";
+                a.src = b;
+                d(a)
+            }
+
+            function _loadCss(b) {
+                var a = document.createElement("link");
+                a.type = "text/css";
+                a.rel = "stylesheet";
+                a.charset = "UTF-8";
+                a.href = b;
+                d(a)
+            }
+
+            function _isNS(b) {
+                b = b.split(".");
+                for (var a = window, c = 0; c < b.length; ++c)
+                    if (!(a = a[b[c]])) return !1;
+                return !0
+            }
+
+            function _setupNS(b) {
+                b = b.split(".");
+                for (var a = window, c = 0; c < b.length; ++c) a.hasOwnProperty ? a.hasOwnProperty(b[c]) ? a = a[b[c]] : a = a[b[c]] = {} : a = a[b[c]] || (a[b[c]] = {});
+                return a
+            }
+            window.addEventListener && "undefined" == typeof document.readyState && window.addEventListener("DOMContentLoaded", function() {
+                document.readyState = "complete"
+            }, !1);
+            if (_isNS('google.translate.Element')) {
+                return
+            }(function() {
+                var c = _setupNS('google.translate._const');
+                c._cest = gtConstEvalStartTime;
+                gtConstEvalStartTime = undefined;
+                c._cl = 'en';
+                c._cuc = 'googleTranslateElementInit';
+                c._cac = '';
+                c._cam = '';
+                c._ctkk = '440335.1449305758';
+                var h = 'translate.googleapis.com';
+                var s = (true ? 'https' : window.location.protocol == 'https:' ? 'https' : 'http') + '://';
+                var b = s + h;
+                c._pah = h;
+                c._pas = s;
+                c._pbi = b + '/translate_static/img/te_bk.gif';
+                c._pci = b + '/translate_static/img/te_ctrl3.gif';
+                c._pli = b + '/translate_static/img/loading.gif';
+                c._plla = h + '/translate_a/l';
+                c._pmi = b + '/translate_static/img/mini_google.png';
+                c._ps = b + '/translate_static/css/translateelement.css';
+                c._puh = 'translate.google.com';
+                _loadCss(c._ps);
+                _loadJs(b + '/translate_static/js/element/main.js');
+            })();
+        })();
+    </script>
+    {% block js %} {% endblock %}
+</body>
+
+</html>

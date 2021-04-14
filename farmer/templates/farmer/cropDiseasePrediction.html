@@ -1,0 +1,27 @@
+{% extends 'farmer/basic.html' %}
+{% block title %}Crop Disease{% endblock %}
+{% block css %}
+.cropdis{
+	margin-top:100px;
+}
+.prevention{
+	margin-left:460px;
+}
+{% endblock %}
+
+{% block body %}
+<div class="container cropdis">
+	<h2 class="text-center mb-2">Crop Disease Prediction - Tomato</h2>
+	<img src="https://images.saferbrand.com/is/image/woodstream/sb_us_t_04_flickr-reuse-Scot-Nelson-2?qlt=75" width=300px height=300px style="margin-left: 400px;">
+	<h4 class="mt-3 text-center">Yes, your plant is suffering from a disease called <u>Sunscald</u></h4>
+	<h4 class="text-center">This disease is not lethal</h4>
+	<div class="container prevention">
+		<h4>Prevention : </h4>
+		<ul>
+			<li>Keep plant shaded.</li>
+			<li>Try organic fungicide.</li>
+			<li>Add mulch.</li>
+		</ul>
+	</div>
+</div>
+{% endblock %}
