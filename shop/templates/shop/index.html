@@ -1,0 +1,128 @@
+{% extends 'shop/basic.html' %} {% block title %}Homepage{% endblock %} {% block homeactive %}active{% endblock homeactive %}{% block body %}
+<style>
+    html {
+        scroll-behavior: smooth;
+    }
+    
+    .col-md-3 {
+        display: inline-block;
+        margin-left: -4px;
+    }
+    
+    .col-md-3 img {
+        width: 227px;
+        height: 250px;
+    }
+    
+    body .carousel-indicators li {
+        display: none;
+    }
+    
+    body .carousel-indicators {
+        bottom: -40px;
+    }
+    
+    body .carousel-indicators .active {
+        background-color: blue;
+    }
+    
+    body .carousel-control-prev-icon,
+    body .carousel-control-next-icon {
+        background-color: blue;
+    }
+    
+    .carousel-control-prev,
+    .carousel-control-next {
+        top: auto;
+        bottom: auto;
+        padding-top: 222px;
+        margin-left: -70px;
+        margin-right: -74px;
+    }
+    
+    body .no-padding {
+        padding-left: 0;
+        padding-right: 0;
+    }
+    
+    .bottom-left {
+        position: absolute;
+        bottom: 100px;
+        left: 250px;
+    }
+    
+    .banner {
+        padding-left: 300px;
+        padding-bottom: 115px;
+    }
+    
+    .container {
+        position: relative;
+    }
+    
+    .freshfruit {
+        letter-spacing: 1px;
+        color: #63b04d;
+    }
+    
+    .main {
+        margin-top: 100px;
+    }
+</style>
+{%load static%}
+<section class="main">
+    <div class="container">
+        <div class="banner mt-4">
+            <img src="https://freedesignfile.com/upload/2017/04/Fruits-and-vegetables-with-a-white-background-HD-picture.jpg">
+            <div class="bottom-left">
+                <span class="freshfruit"><strong>FRESH FRUITS &</strong></span>
+                <h2><strong>Vegetables</strong> <br /><strong>100% Organic </strong><br /><strong>Farm Products</strong></h2>
+                <a href="#cat" class="btn btn-outline-success"><img src="https://img.icons8.com/officel/16/000000/natural-food.png" /> SHOP NOW</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<div class="container" id="cat">
+    {% for product,range,nSlides in allProds %}
+    <h4 class="my-4">{{product.0.category}}</h4>
+    <div class="row">
+        <div id="demo{{forloop.counter}}" class="col carousel slide my-3" data-ride="carousel">
+            <ul class="carousel-indicators">
+                <li data-target="#demo{{forloop.counter}}" data-slide-to="0" class="active"></li>
+                {% for i in range %}
+                <li data-target="#demo{{forloop.parentloop.counter}}" data-slide-to="{{i}}"></li>
+                {% endfor %}
+            </ul>
+
+            <div class="container carousel-inner no-padding">
+                <div class="carousel-item active">
+
+                    {% for i in product %}
+
+                    <div class="col-xs-3 col-sm-3 col-md-3">
+                        <div class="card align-items-center" style="width: 18rem;">
+                            <img src="/media/{{i.image}}" class="card-img-top" alt="...">
+                            <div class="card-body">
+                                <h5 class="card-title" id="namepr{{i.id}}">{{i.sub_category|slice:"0:20"}}</h5>
+                                <a href="/shop/products/{{i.sub_category}}"><button id="qv{{i.id}}" class="btn btn-primary cart">View More</button></a>
+                            </div>
+                        </div>
+                    </div>
+                    {% if forloop.counter|divisibleby:4 and forloop.counter > 0 and not forloop.last %}
+                </div>
+                <div class="carousel-item">
+                    {% endif %} {% endfor %}
+                </div>
+            </div>
+        </div>
+        <a class="carousel-control-prev" href="#demo{{forloop.counter}}" data-slide="prev">
+            <span class="carousel-control-prev-icon"></span>
+        </a>
+        <a class="carousel-control-next" href="#demo{{forloop.counter}}" data-slide="next">
+            <span class="carousel-control-next-icon"></span>
+        </a>
+    </div>
+    {% endfor %}
+</div>{% endblock %}

@@ -1,0 +1,16 @@
+{% extends 'farmer/basic.html' %} {% block title %}News{% endblock %} {% block newsactive %}active{% endblock newsactive %} {% block css %} h2 { text-align: center; } .container { display: flex; justify-content: center; } .news{ margin-top:75px; } {%endblock%}
+{% block body %} {% load static %}
+<h2 class="news" style="margin-top: 8%; text-align: center;">News</h2>
+<div class="container">
+    {% for i in news.articles %}
+    <div class="card" style="width: 360px; display: inline-block; padding-bottom: 2px;">
+        <img class="card-img-top" src='{{i.urlToImage}}' onerror="this.src = 'https://m.hindustantimes.com/rf/image_size_640x362/HT/p2/2016/11/21/Pictures/chandigarh-outskirts-hindustan-ludhiana-bothgarh-working-chandigarh_31b58baa-b004-11e6-97d4-77e8d9863aa4.jpg';"
+            height=300px width=300px>
+        <div class="card-body">
+            <h5 class="card-title">{{i.title|slice:"0:53"}}...</h5>
+            <a href="{{i.url}}" class="btn btn-primary"><img src="https://img.icons8.com/emoji/25/000000/rolled-up-newspaper.png" /> Full News</a>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}

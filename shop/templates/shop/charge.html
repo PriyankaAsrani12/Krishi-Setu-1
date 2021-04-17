@@ -1,0 +1,32 @@
+{% extends 'shop/basic.html' %} {% block body %} {% load static %}
+<h2 style="margin-top: 10%;">Thank you! Transaction successful.<strong><span id='amount'></span></strong></h2>
+
+{% endblock %} {% block js %}
+<script>
+    var sum = 0
+    var price = 0
+    if ($.isEmptyObject(cart)) {
+        mystr = `<p>Your cart is Empty, please add some items before checking out!</p>`
+        $('#items').append(mystr)
+    } else {
+        for (item in cart) {
+            let name = cart[item][1];
+            let qty = cart[item][0];
+            let itemPrice = cart[item][2];
+            sum = sum + qty
+            price = price + qty * itemPrice
+            mystr = `<li class="list-group-item d-flex justify-content-between align-items-center">
+                ${name}
+                <span class="badge badge-primary badge-pill">${qty}</span>
+              </li>`
+            $('#items').append(mystr)
+        }
+    }
+    document.getElementById('cart').innerHTML = sum;
+    document.getElementById('totalPrice').innerHTML = price;
+    document.getElementById('amount').innerHTML = price;
+
+    $("#itemsJson").val(JSON.stringify(cart));
+    $('#amount').val($('#totalPrice').html())
+</script>
+{% endblock %}

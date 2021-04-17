@@ -1,0 +1,74 @@
+{% extends 'shop/basic.html' %} {% block title %}Contact{% endblock %} {% block body %}
+<style>
+    .center_div {
+        margin: 0 auto;
+        width: 60%;
+        padding-top: 5%;
+    }
+</style>
+hello
+<div class="container center_div">
+    <h3 class="text-center my-3">Contact Us</h3>
+    <hr>
+    <div class="row">
+        <div class="col-md-12 text-center">
+            <form action="/shop/contact" method="post">{% csrf_token %}
+                <input class="form-control" name="name" id="name" placeholder="Name" required /><br />
+                <input class="form-control" name="phone" id="phone" placeholder="Phone" required /><br />
+                <input class="form-control" name="email" id="email" placeholder="E-mail" required /><br />
+                <input class="form-control" name="subject" id="subject" placeholder="Subject" required /><br />
+                <textarea class="form-control" name="text" placeholder="Message" id="message"
+                    style="height:150px;"></textarea><br />
+                <input class="btn btn-primary" type="submit" value="Send" />
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %} {% block js %}
+<script>
+    $('#popcart').popover();
+
+    if (localStorage.getItem('cart') == null) {
+        var cart = {};
+    } else {
+        cart = JSON.parse(localStorage.getItem('cart'));
+        document.getElementById('cart').innerHTML = Object.keys(cart).length;
+        updatecart(cart);
+    }
+
+    function clearCart() {
+        cart = JSON.parse(localStorage.getItem('cart'));
+        // for (var item in cart) {
+        //     document.getElementById('div' + item).innerHTML = '<button id="' + item + '"class="btn btn-primary">Add to Cart</button>'
+        // }
+        localStorage.clear()
+        cart = {};
+        updatecart(cart);
+    }
+
+    function updatecart(cart) {
+        var sum = 0;
+        for (var k in cart) {
+            sum = sum + cart[k][0];
+        }
+        localStorage.setItem('cart', JSON.stringify(cart))
+        document.getElementById('cart').innerHTML = sum;
+        updatePopover(cart);
+    }
+
+
+    function updatePopover(cart) {
+        var popStr = ""
+        popStr = popStr + "<h5>Cart for your items in my shopping cart</h5><div class='mx-2 my-2'>"
+        var i = 1;
+        for (var item in cart) {
+            popStr = popStr + "<b>" + i + " " + "</b>."
+            popStr = popStr + cart[item][1] + " -- Qty: " + cart[item][0] + " -- price: " + cart[item][2] + "/kg" + '<br>';
+            i = i + 1
+        }
+        popStr = popStr + "</div><a href='/shop/checkout'><button class='btn btn-primary mx-2' id='clearCart'>Checkout</button></a><button class='btn btn-primary' onclick='clearCart()' id='clearCart'>Clear Cart</button>"
+        document.getElementById('popcart').setAttribute('data-content', popStr)
+        $('#popcart').popover("show");
+    }
+</script>
+{% endblock %}

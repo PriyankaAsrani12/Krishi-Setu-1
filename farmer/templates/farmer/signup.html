@@ -1,0 +1,71 @@
+{% extends 'farmer/basic.html' %} {% block title %}SignUp Page{% endblock %} {% block signupactive %}active{% endblock signupactive %} {% block active %}active{% endblock %} {% block body %}
+
+<div class="container sign" style="margin-top:8%;">
+    <h1>Sign Up Form</h1>
+    <form action="/farmer/signup" method="POST">{% csrf_token %}
+        <div class="form-row">
+            <div class="col-md-4 mb-2">
+                <label for="fname">First name</label>
+                <input type="text" class="form-control" id="fname" name="first_name" required>
+            </div>
+            <div class="col-md-4 mb-2">
+                <label for="lname">Last name</label>
+                <input type="text" class="form-control" id="lname" name="last_name" required>
+            </div>
+            <div class="col-md-4 mb-2">
+                <label for="username">Username</label>
+                <input type="text" class="form-control" id="username" name="username"  required>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="col-md-6 mb-3">
+                <label for="phoneNumber">Phone Number</label>
+                <input type="text" class="form-control" id="phoneNumber" name="phoneNumber" required>
+            </div>
+            <div class="col-md-6 mb-3">
+                <label for="cardNumber">Aadhar Card Number</label>
+                <input type="text" class="form-control" id="cardNumber" name ="cardNumber" required>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="col-md-6 mb-3">
+                <label for="email">Email</label>
+                <input type="text" class="form-control" id= "email" name="email" required>
+            </div>
+            <div class="col-md-6 mb-3">
+                <label for="state">State</label>
+                <input type="text" class="form-control" id="state" name="state" required>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="col-md-6 mb-3">
+                <label for="password">Password</label>
+                <input type="text" class="form-control" id="password" name="password" required>
+            </div>
+            <div class="col-md-6 mb-3">
+                <label for="confirmPassword">Confirm Password</label>
+                <input type="text" class="form-control" id="confirmPassword" name="confirmPassword" required>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="col-md-6 mb-3">
+                <label for="village">Village</label>
+                <input type="text" class="form-control" id="village" name="village" required>
+            </div>
+            <div class="col-md-6 mb-3">
+                <label for="zip">Zip Code</label>
+                <input type="text" class="form-control" id="zip" name="zip" required>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" value="" id="invalidCheck2" required>
+                <label class="form-check-label" for="invalidCheck2">
+                    Agree to terms and conditions
+                </label>
+            </div>
+        </div>
+        <button class="btn btn-success" type="submit">Submit</button>
+    </form>
+</div>
+{% endblock %}

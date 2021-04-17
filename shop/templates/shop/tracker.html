@@ -1,0 +1,134 @@
+{% extends 'shop/basic.html' %} {% block title %}Tracker{% endblock %}
+
+{% block body %}
+<style>
+    h2 {
+        text-align: center;
+    }
+
+    .tracker {
+        margin-top: 90px;
+    }
+</style>
+<div class="container tracker">
+    <div class="col my-4">
+        <h2>Tracker</h2>
+
+        <form method="POST" action="#" id="trackerForm">{% csrf_token %}
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label for="orderId">Order Id</label>
+                    <input type="text" class="form-control" id="orderId" name="orderId" placeholder="Order Id">
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="email">Email</label>
+                    <input type="email" class="form-control" id="email" name="email" placeholder="Email">
+                </div>
+
+                <button type="submit" class="btn btn-primary my-2">
+                    Trace order
+                </button>
+        </form>
+    </div>
+</div>
+
+
+<div class="col my-4">
+    <h2>Your Order Status</h2>
+    <div class="my-4">
+        <ul class="list-group" id="items">
+        </ul>
+    </div>
+</div>
+</div>
+
+{% endblock %} {% block js %}
+
+<script>
+    $('#trackerForm').submit(function (event) {
+
+        $('#items').empty();
+
+        var formdata = {
+            'orderId': $('input[name=orderId]').val(),
+            'email': $('input[name=email]').val(),
+            'csrfmiddlewaretoken': $('input[name=csrfmiddlewaretoken]').val()
+        }
+
+        $.ajax({
+            type: 'POST',
+            url: '/shop/tracker',
+            data: formdata,
+            encode: true
+        })
+            .done(function (data) {
+                console.log(data)
+
+                updates = JSON.parse(data);
+                if (updates.length > 0 & updates != {}) {
+                    for (i = 0; i < updates.length; i++) {
+                        let text = updates[i]['text'];
+                        let time = updates[i]['time'];
+                        mystr = `<li class="list-group-item d-flex justify-content-between align-items-center">
+                        ${text}
+                        <span class="badge badge-primary badge-pill">${time}</span>
+                    </li>`
+                        $('#items').append(mystr);
+                    }
+                } else {
+                    mystr = `<li class="list-group-item d-flex justify-content-between align-items-center">
+                        Sorry, We are not able to fetch this order id and email. Make sure to type correct order Id and email</li>`
+                    $('#items').append(mystr);
+                }
+            });
+
+        event.preventDefault();
+    });
+
+
+    /*$('#popcart').popover();
+
+    if (localStorage.getItem('cart') == null) {
+        var cart = {};
+    } else {
+        cart = JSON.parse(localStorage.getItem('cart'));
+        document.getElementById('cart').innerHTML = Object.keys(cart).length;
+        updatecart(cart);
+    }
+
+    function clearCart() {
+        cart = JSON.parse(localStorage.getItem('cart'));
+        // for (var item in cart) {
+        //     document.getElementById('div' + item).innerHTML = '<button id="' + item + '"class="btn btn-primary">Add to Cart</button>'
+        // }
+        localStorage.clear()
+        cart = {};
+        updatecart(cart);
+    }
+
+    function updatecart(cart) {
+        var sum = 0;
+        for (var k in cart) {
+            sum = sum + cart[k][0];
+        }
+        localStorage.setItem('cart', JSON.stringify(cart))
+        document.getElementById('cart').innerHTML = sum;
+        updatePopover(cart);
+    }
+
+
+    function updatePopover(cart) {
+        var popStr = ""
+        popStr = popStr + "<h5>Cart for your items in my shopping cart</h5><div class='mx-2 my-2'>"
+        var i = 1;
+        for (var item in cart) {
+            popStr = popStr + "<b>" + i + " " + "</b>."
+            popStr = popStr + cart[item][1] + " -- Qty: " + cart[item][0] + " -- price: " + cart[item][2] + "/kg" + '<br>';
+            i = i + 1
+        }
+        popStr = popStr + "</div><a href='/shop/checkout'><button class='btn btn-primary mx-2' id='clearCart'>Checkout</button></a><button class='btn btn-primary' onclick='clearCart()' id='clearCart'>Clear Cart</button>"
+        document.getElementById('popcart').setAttribute('data-content', popStr)
+        $('#popcart').popover("show");
+    }*/
+</script>
+{% endblock %}

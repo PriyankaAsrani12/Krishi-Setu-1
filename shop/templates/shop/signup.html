@@ -1,0 +1,55 @@
+{% extends 'shop/basic.html' %} {% block title %}SignUp Page{% endblock %} {% block body %}
+<style>
+    .form-control {
+        border-width: 1.5px;
+    }
+    
+    .signup {
+        padding-top: 80px;
+    }
+</style>
+<div class="container signup">
+    <h1>Sign Up Form</h1>
+    <form method="POST" action="/shop/signup">{% csrf_token %}
+        <div class="form-row">
+            <div class="col-md-4 mb-2">
+                <label for="validationDefault01">First name</label>
+                <input type="text" class="form-control" name="fname" id="validationDefault01" placeholder="First Name" required>
+            </div>
+            <div class="col-md-4 mb-2">
+                <label for="validationDefault02">Last name</label>
+                <input type="text" class="form-control" name="lname" id="validationDefault02" placeholder="Last Name" required>
+            </div>
+            <div class="col-md-4 mb-2">
+                <label for="username">Username</label>
+                <input type="text" class="form-control" id="username" name="username"  required>
+            </div>
+        </div>
+        <div class="mb-3">
+            <label for="validationDefault03">Email</label>
+            <input type="text" class="form-control" name="email" id="validationDefault03" placeholder="Email Address" required>
+        </div>
+        <div class="mb-3">
+            <label for="validationDefault06">FSSAI Number</label>
+            <input type="text" class="form-control" name="fssaino" id="validationDefault06" placeholder="FSSAI" required>
+        </div>
+        <div class="mb-3">
+            <label for="validationDefault04">Password</label>
+            <input type="text" class="form-control" name="password" id="validationDefault04" placeholder="Password" required>
+        </div>
+        <div class="mb-3">
+            <label for="validationDefault05">Confirm Password</label>
+            <input type="text" class="form-control" name="confirmPassword" id="validationDefault05" placeholder="Confirm Password" required>
+        </div>
+        <div class="form-group">
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" id="invalidCheck2" required>
+                <label class="form-check-label" for="invalidCheck2">
+                    Agree to terms and conditions
+                </label>
+            </div>
+        </div>
+        <button class="btn btn-success" type="submit">Submit</button>
+    </form>
+</div>
+{% endblock %}

@@ -1,0 +1,66 @@
+{% extends 'shop/basic.html' %} {% block body %} {% load static %} {% block js %}
+<script>
+    var sum = 0
+    var price = 0
+    if ($.isEmptyObject(cart)) {
+        mystr = `<p>Your cart is Empty, please add some items before checking out!</p>`
+        $('#items').append(mystr)
+    } else {
+        for (item in cart) {
+            let name = cart[item][1];
+            let qty = cart[item][0];
+            let itemPrice = cart[item][2];
+            sum = sum + qty
+            price = price + qty * itemPrice
+            mystr = `<li class="list-group-item d-flex justify-content-between align-items-center">
+                ${name}
+                <span class="badge badge-primary badge-pill">${qty}</span>
+              </li>`
+            $('#items').append(mystr)
+        }
+    }
+    document.getElementById('cart').innerHTML = sum;
+    document.getElementById('totalPrice').innerHTML = price;
+
+    $("#itemsJson").val(JSON.stringify(cart));
+    $('#amount').val($('#totalPrice').html())
+    $('.stripe-button').attr('data-amount', price)
+</script>
+{% endblock %}
+
+<div class="container" style="margin-top: 10%;">
+    <div class="col my-4">
+        <h2 class="mt-4">Review your cart items</h2>
+        <div class="my-4">
+            <ul class="list-group" id="items">
+                <li class="list-group-item d-flex justify-content-between align-items-center">
+                    Items
+                    <span class="badge badge-primary badge-pill">Quantity</span>
+                </li>
+            </ul>
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb mt-3">
+                    <li class="breadcrumb-item active" aria-current="page">Your total bill is <b>Rs. <span
+                                id="totalPrice"></span></b></li>
+                </ol>
+            </nav>
+        </div>
+    </div>
+
+    <form action="/shop/charge" method="post">
+        {% csrf_token %}
+        <script>
+            var price = 0
+            for (item in cart) {
+                let qty = cart[item][0];
+                let itemPrice = cart[item][2];
+                price = price + qty * itemPrice
+            }
+            $('.stripe-button').attr('data-amount', price)
+        </script>
+        <script src="https://checkout.stripe.com/checkout.js" class="stripe-button" data-key="{{ key }}"
+            data-description="A Django Charge" data-amount="0" data-locale="auto"></script>
+
+    </form>
+</div>
+{% endblock %}

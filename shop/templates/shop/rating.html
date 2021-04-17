@@ -1,0 +1,30 @@
+{% extends 'shop/basic.html' %} {% block title %}History{% endblock %} 
+{% block body %}
+<style>
+  .center_div {
+    margin: 0 auto;
+    width: 75%;
+    padding-top: 5%;
+  }
+</style>
+<div class="container center_div">
+  <h3 class="text-center my-3">Rating</h3>
+  <img src="/media/{{prod.0.image}}" alt="" />
+
+  <form action="/shop/rating/{{prod.0.id}}" method="POST">
+    {% csrf_token %}
+    <div class="form-group col-md-4">
+      <label for="rating">Rate the Product</label>
+      <select id="rating" name="rating" class="form-control">
+        <option selected>Rating</option>
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5</option>
+      </select>
+    </div>
+    <button type="submit">Submit</button>
+  </form>
+</div>
+{%endblock%}

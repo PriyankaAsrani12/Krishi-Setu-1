@@ -1,0 +1,179 @@
+{% extends 'farmer/basic.html' %} {% block title %}Add Product{% endblock %} {% block addproductactive %}active{% endblock addproductactive %} {% block body %} {% load static %}
+
+<style>
+    html {
+        scroll-behavior: smooth;
+    }
+    
+    .navbar {
+        transition: all 0.4s;
+    }
+    
+    .navbar .nav-link {
+        color: #265752;
+    }
+    
+    .navbar .nav-link:hover,
+    .navbar .nav-link:focus {
+        color: #be6d54;
+        text-decoration: none;
+    }
+    
+    .navbar .navbar-brand {
+        color: #265752;
+    }
+    /* Change navbar styling on scroll */
+    
+    .navbar.active {
+        background: #ededef;
+        box-shadow: 1px 2px 10px rgba(0, 0, 0, 0.1);
+        height: 55px;
+    }
+    
+    .navbar.active .nav-link {
+        color: #265752;
+    }
+    
+    .navbar.active .nav-link:hover,
+    .navbar.active .nav-link:focus {
+        color: #0b322b;
+        text-decoration: none;
+    }
+    
+    .navbar.active .navbar-brand {
+        color: #265752;
+    }
+    
+    @media (min-width: 1200px) {
+        .container {
+            max-width: 1199px;
+        }
+    }
+    /* Change navbar styling on small viewports */
+    
+    @media (max-width: 991.98px) {
+        .navbar {
+            background: #ededef;
+        }
+        .navbar .navbar-brand,
+        .navbar .nav-link {
+            color: #265752;
+        }
+    }
+    
+    .text-small {
+        font-size: 0.9rem !important;
+    }
+    
+    body {
+        min-height: 120vh;
+        background-color: white;
+        background-image: linear-gradient(135deg, white 0%);
+    }
+    
+    #loader {
+        border: 12px solid #f3f3f3;
+        border-radius: 50%;
+        border-top: 12px solid #be6d54;
+        width: 70px;
+        height: 70px;
+        animation: spin 1s linear infinite;
+    }
+    
+    @keyframes spin {
+        100% {
+            transform: rotate(360deg);
+        }
+    }
+    
+    .load {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        margin: auto;
+    }
+    
+    .nav-item.active .nav-link {
+        color: #be6d54;
+        text-decoration: none;
+    }
+    
+    .addprod {
+        margin-top: 80px;
+    }
+    
+    .nav-item.active .nav-link {
+        color: #be6d54;
+        text-decoration: none;
+    }
+</style>
+
+
+
+<div class="container addprod">
+    <h2 class="text-center">Add Product</h2>
+    <form action="/farmer/addproduct" method="post">{% csrf_token %}
+        <div class="row">
+            <div class="form-group col-md-6">
+                <label for="category">Category</label>
+                <input type="text" class="form-control" id="category" name="category" placeholder="Eg. Fruit">
+            </div>
+
+            <div class="form-group col-md-6">
+                <label for="subcategory">Sub Category</label>
+                <input type="text" class="form-control" id="subcategory" name="subcategory" placeholder="Eg. Mango">
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-group col-md-4">
+                <label for="aln">Agricultural Licence Number</label>
+                <input type="text" class="form-control" id="aln" name="aln" placeholder="Enter Agricultural Licence Number">
+            </div>
+            <div class="form-group col-md-4">
+                <label for="variety">Variety</label>
+                <input type="text" class="form-control" id="variety" name="variety" placeholder="Eg. Alphonso">
+            </div>
+            <div class="form-group col-md-4">
+                <label for="location">Location</label>
+                <input type="text" class="form-control" id="location" name="location" placeholder="Eg. Ratnagiri, Maharashtra ">
+            </div>
+        </div>
+        <div class="row ">
+            <div class="form-group col-md-4 ">
+                <label for="price">Price</label>
+                <input type="number" class="form-control" id="price" name="price" placeholder="Enter price ">
+            </div>
+            <div class="form-group col-md-4 ">
+                <label for="date">Date</label>
+                <input type="date" class="form-control" id="date" name="date" placeholder="Enter date ">
+            </div>
+            <div class="form-group col-md-4 ">
+                <label for="quantity">Quantity</label>
+                <input type="number" min="10" class="form-control" id="quantity" name="quantity" placeholder="Enter quantity of a product in kgs ">
+            </div>
+        </div>
+
+
+        <div class="custom-file mb-3 ">
+            <label>Choose Image</label>
+            <input type="file" name="myfile">
+        </div>
+
+        <div style="text-align: center;">
+            <button class="btn btn-success" type="submit">Submit</button>
+        </div>
+    </form>
+</div>
+<script src="https://code.jquery.com/jquery-3.5.1.js " integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin=" anonymous "></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js " integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut " crossorigin="anonymous "></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js " integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k " crossorigin="anonymous "></script>
+<script>
+    if (thank) {
+        alert("Thanks for contacting us! We will get back to you soon.")
+        localStorage.clear();
+        document.location = "/shop";
+    }
+</script>
+{% endblock %}

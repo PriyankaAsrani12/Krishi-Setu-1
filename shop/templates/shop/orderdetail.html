@@ -1,0 +1,38 @@
+{% extends 'shop/basic.html' %} {% block title %}History{% endblock %}
+{% block body %}
+<style>
+    .center_div {
+        margin: 0 auto;
+        width: 75%;
+        padding-top: 5%;
+    }
+</style>
+
+<div class="container center_div">
+
+    <h3 class="text-center my-3">Order {{order.0.order_id}}</h3>
+
+    {% for i in lst%}
+
+
+    <div class="card mb-3 border border-secondary" style="max-width: 100%;">
+        <div class="row g-0 ">
+            <div class="col-md-4">
+                <img src="#" class="p-3" width="100%" height="200px">
+            </div>
+            <div class="col-md-8">
+                <div class="card-body">
+                    <h5 class="card-title">{{i.1}}</h5>
+                    <p class="card-text"><strong>Quantity</strong>: {{i.0}} </p>
+                    <p class="card-text"><strong>Price/kg</strong>: {% widthratio i.0 1 i.2 %} </p>
+                    <a href="/shop/rating/{{i.3}}" class="btn btn-primary">View More</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {%endfor%}
+    <hr>
+
+</div>
+{% endblock %}

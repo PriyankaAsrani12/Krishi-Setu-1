@@ -1,0 +1,28 @@
+{% extends 'shop/basic.html' %} {% block title %}History{% endblock %}
+{% block body %}
+<style>
+    .center_div {
+        margin: 0 auto;
+        width: 75%;
+        padding-top: 5%;
+    }
+</style>
+
+<div class="container center_div">
+    <h3 class="text-center my-3">Order History</h3>
+    <hr>
+    {% for i in order %}
+
+    <div class="card mb-3">
+        <div class="card-body ">
+            <h5 class="card-title">Order ID: {{i.order_id}}</h5>
+            <p class="card-text">Price: Rs {{i.amount}}</p>
+
+            <a href="/shop/orderdetail/{{i.order_id}}" class="btn btn-primary">View More</a>
+        </div>
+    </div>
+
+    {% endfor %}
+</div>
+
+{% endblock %}

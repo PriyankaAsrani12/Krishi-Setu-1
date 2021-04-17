@@ -1,0 +1,365 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"
+        integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.13.0/css/all.css">
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Catamaran:wght@500&display=swap" rel="stylesheet">
+    <link rel="icon" href="https://img.icons8.com/plasticine/25/000000/sprout.png">
+
+    <title>{% block title %} {% endblock %}</title>
+    <style>
+        html {
+            scroll-behavior: smooth;
+        }
+
+        .navbar {
+            transition: all 0.4s;
+        }
+
+        .navbar .nav-link {
+            color: #265752;
+        }
+
+        .navbar .nav-link:hover,
+        .navbar .nav-link:focus {
+            color: #be6d54;
+            text-decoration: none;
+        }
+
+        .navbar .navbar-brand {
+            color: #265752;
+        }
+
+        /* Change navbar styling on scroll */
+
+        .navbar.active {
+            background: #ededef;
+            box-shadow: 1px 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .navbar.active .nav-link {
+            color: #265752;
+        }
+
+        .navbar.active .nav-link:hover,
+        .navbar.active .nav-link:focus {
+            color: #be6d54;
+            text-decoration: none;
+        }
+
+        .nav-item.active .nav-link {
+            color: #be6d54;
+            text-decoration: none;
+        }
+
+        .navbar.active .navbar-brand {
+            color: #265752;
+        }
+
+        @media (min-width: 1200px) {
+            .container {
+                max-width: 1199px;
+            }
+        }
+
+        @media (max-width: 991.98px) {
+            .navbar {
+                background: #ededef;
+            }
+
+            .navbar .navbar-brand,
+            .navbar .nav-link {
+                color: #265752;
+            }
+        }
+
+        .text-small {
+            font-size: 0.9rem !important;
+        }
+
+        body {
+            min-height: 120vh;
+            background-color: white;
+            background-image: linear-gradient(135deg, white 0%);
+        }
+
+        #loader {
+            border: 12px solid #f3f3f3;
+            border-radius: 50%;
+            border-top: 12px solid #be6d54;
+            width: 70px;
+            height: 70px;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        .load {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            margin: auto;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="loader" class="load"></div>
+    <header class="header">
+        <nav class="navbar navbar-expand-lg fixed-top py-3">
+            <a href="/" class="navbar-brand text-uppercase font-weight-bold"><img
+                    src="https://img.icons8.com/plasticine/25/000000/sprout.png"
+                    style="max-height: 25px; max-width: 25px" /> Krishi Setu</a>
+            <button type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"
+                class="navbar-toggler navbar-toggler"><i class="fa fa-bars"></i></button>
+            <div id="navbarSupportedContent" class="collapse navbar-collapse">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item {% block homeactive %}{% endblock homeactive %}">
+                        <a class="nav-link text-uppercase font-weight-bold" href="/shop">Home</a>
+                    </li>
+                    <li class="nav-item {% block aboutactive %}{% endblock aboutactive %}"><a href="/shop/about"
+                            class="nav-link text-uppercase font-weight-bold">About</a></li>
+                    <li class="nav-item {% block contactactive %}{% endblock contactactive %}"><a href="/shop/contact"
+                            class="nav-link text-uppercase font-weight-bold">Contact</a></li>
+                    <li class="nav-item {% block trackeractive %}{% endblock trackeractive %}"><a href="/shop/tracker"
+                            class="nav-link text-uppercase font-weight-bold">Tracker</a></li>
+                    <li class="nav-item {% block historyactive %}{% endblock historyactive %}"><a href="/shop/history"
+                            class="nav-link text-uppercase font-weight-bold">History</a></li>
+                    <li class="nav-item {% block newsactive %}{% endblock newsactive %}"><a href="/shop/news"
+                            class="nav-link text-uppercase font-weight-bold">News</a></li>
+                    {% if user.is_authenticated %}
+                    <li class="nav-item {% block logout %}{% endblock logout %}"><a href="/shop/logout"
+                            class="nav-link text-uppercase font-weight-bold">Logout</a></li>
+                    {% else %}
+                    <li class="nav-item {% block signup %}{% endblock signup %}"><a href="/shop/signup"
+                            class="nav-link text-uppercase font-weight-bold">Signup</a></li>
+                    {% endif %}
+                    {% if user.is_authenticated %}
+                    Hello, {{ user.username }}
+                    {% else %}
+                    <li class="nav-item {% block login %}{% endblock login %}"><a href="/shop/login"
+                            class="nav-link text-uppercase font-weight-bold">Login</a></li>
+                    {% endif %}
+                    <li>
+                        <div id="google_translate_element"></div>
+                    </li>
+                </ul>
+                <form action='/shop/search' method='get' class="form-inline my-2 my-lg-0 ml-2">
+                    <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search"
+                        name="search" id="search">
+                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                </form>
+                <!-- <button type="button" class="btn btn-outline-success ml-2" id="popcart" data-html="true" data-container="body" data-toggle="popover" data-placement="bottom">
+                    <img src="https://img.icons8.com/color/20/000000/shopping-cart.png" /> Cart(<span id="update">0</span>)
+                    </button> -->
+                <button type="button" class="btn btn-outline-success mx-2" id="popcart" data-html="true"
+                    data-container="body" data-toggle="popover" data-placement="bottom" data-content="Cart">
+                    <img src="https://img.icons8.com/color/20/000000/shopping-cart.png" />Cart(<span id="cart">0</span>)
+                </button>
+            </div>
+
+        </nav>
+    </header>
+    {% for message in messages %}
+    <div class="alert alert-{{message.tags}} mb-0 alert-dismissible fade show" role="alert">
+        <strong>Message: </strong> {{message}}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    {% endfor %}
+    {% block body %} {% endblock %}
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.6.0.js"
+        integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"
+        integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"
+        integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k"
+        crossorigin="anonymous"></script>
+
+    <script>
+        if (localStorage.getItem('cart') == null) {
+            var cart = {};
+        } else {
+            cart = JSON.parse(localStorage.getItem('cart'));
+            document.getElementById('cart').innerHTML = Object.keys(cart).length;
+            updatecart(cart);
+        }
+
+        function clearCart() {
+            cart = JSON.parse(localStorage.getItem('cart'));
+            // for (var item in cart) {
+            //     document.getElementById('div' + item).innerHTML = '<button id="' + item + '"class="btn btn-primary">Add to Cart</button>'
+            // }
+            localStorage.clear()
+            cart = {};
+            updatecart(cart);
+        }
+
+        function updatecart(cart) {
+            var sum = 0;
+            for (var k in cart) {
+                sum = sum + cart[k][0];
+            }
+            localStorage.setItem('cart', JSON.stringify(cart))
+            document.getElementById('cart').innerHTML = sum;
+            updatePopover(cart);
+        }
+
+
+        $('#popcart').popover("show");
+
+        function updatePopover(cart) {
+            var popStr = ""
+            popStr = popStr + "<h5>Cart for your items </h5><div class='mx-2 my-2'>"
+            var i = 1;
+            for (var item in cart) {
+                popStr = popStr + "<b>" + i + " " + "</b>."
+                popStr = popStr + cart[item][1] + " -- Qty: " + cart[item][0] + " -- price: " + cart[item][2] + "/kg" + '<br>';
+                i = i + 1
+            }
+            popStr = popStr + "</div><a href='/shop/checkout'><button class='btn btn-primary mx-2' id='clearCart'>Checkout</button></a><button class='btn btn-primary' onclick='clearCart()' id='clearCart'>Clear Cart</button>"
+            document.getElementById('popcart').setAttribute('data-content', popStr)
+            $('#popcart').popover("show");
+        }
+    </script>
+    <script>
+        document.onreadystatechange = function () {
+            if (document.readyState !== "complete") {
+                document.querySelector(
+                    "body").style.visibility = "hidden";
+                document.querySelector(
+                    "#loader").style.visibility = "visible";
+            } else {
+                document.querySelector(
+                    "#loader").style.display = "none";
+                document.querySelector(
+                    "body").style.visibility = "visible";
+            }
+        };
+        $(function () {
+            $(window).on('scroll', function () {
+                if ($(window).scrollTop() > 10) {
+                    $('.navbar').addClass('active');
+                } else {
+                    $('.navbar').removeClass('active');
+                }
+            });
+        });
+
+
+        // count = 0
+
+        // function clearCart() {
+        //     document.getElementById('empty').innerHTML = 'Your cart is empty!'
+        //     document.getElementById('update').innerHTML = 0
+        //     count = 0
+        // }
+
+        // function updateCart() {
+        //     count = count + 1
+        //     document.getElementById('update').innerHTML = count
+        // }
+    </script>
+    <script type="text/javascript">
+        // Custom Scripts
+
+        function googleTranslateElementInit() {
+            new google.translate.TranslateElement({
+                pageLanguage: 'en'
+            }, 'google_translate_element');
+        }
+
+
+        // Minified Scripts
+        (function () {
+            var gtConstEvalStartTime = new Date();
+
+            function d(b) {
+                var a = document.getElementsByTagName("head")[0];
+                a || (a = document.body.parentNode.appendChild(document.createElement("head")));
+                a.appendChild(b)
+            }
+
+            function _loadJs(b) {
+                var a = document.createElement("script");
+                a.type = "text/javascript";
+                a.charset = "UTF-8";
+                a.src = b;
+                d(a)
+            }
+
+            function _loadCss(b) {
+                var a = document.createElement("link");
+                a.type = "text/css";
+                a.rel = "stylesheet";
+                a.charset = "UTF-8";
+                a.href = b;
+                d(a)
+            }
+
+            function _isNS(b) {
+                b = b.split(".");
+                for (var a = window, c = 0; c < b.length; ++c)
+                    if (!(a = a[b[c]])) return !1;
+                return !0
+            }
+
+            function _setupNS(b) {
+                b = b.split(".");
+                for (var a = window, c = 0; c < b.length; ++c) a.hasOwnProperty ? a.hasOwnProperty(b[c]) ? a = a[b[c]] : a = a[b[c]] = {} : a = a[b[c]] || (a[b[c]] = {});
+                return a
+            }
+            window.addEventListener && "undefined" == typeof document.readyState && window.addEventListener("DOMContentLoaded", function () {
+                document.readyState = "complete"
+            }, !1);
+            if (_isNS('google.translate.Element')) {
+                return
+            } (function () {
+                var c = _setupNS('google.translate._const');
+                c._cest = gtConstEvalStartTime;
+                gtConstEvalStartTime = undefined;
+                c._cl = 'en';
+                c._cuc = 'googleTranslateElementInit';
+                c._cac = '';
+                c._cam = '';
+                c._ctkk = '440335.1449305758';
+                var h = 'translate.googleapis.com';
+                var s = (true ? 'https' : window.location.protocol == 'https:' ? 'https' : 'http') + '://';
+                var b = s + h;
+                c._pah = h;
+                c._pas = s;
+                c._pbi = b + '/translate_static/img/te_bk.gif';
+                c._pci = b + '/translate_static/img/te_ctrl3.gif';
+                c._pli = b + '/translate_static/img/loading.gif';
+                c._plla = h + '/translate_a/l';
+                c._pmi = b + '/translate_static/img/mini_google.png';
+                c._ps = b + '/translate_static/css/translateelement.css';
+                c._puh = 'translate.google.com';
+                _loadCss(c._ps);
+                _loadJs(b + '/translate_static/js/element/main.js');
+            })();
+        })();
+    </script>
+    {% block js %} {% endblock %}
+</body>
+
+</html>

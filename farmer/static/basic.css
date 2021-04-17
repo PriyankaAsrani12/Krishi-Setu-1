@@ -1,0 +1,100 @@
+html {
+    scroll-behavior: smooth;
+}
+
+.navbar {
+    transition: all 0.4s;
+}
+
+.navbar .nav-link {
+    color: #265752;
+}
+
+.navbar .nav-link:hover,
+.navbar .nav-link:focus {
+    color: #be6d54;
+    text-decoration: none;
+}
+
+.navbar .navbar-brand {
+    color: #265752;
+}
+
+
+/* Change navbar styling on scroll */
+
+.navbar.active {
+    background: #ededef;
+    box-shadow: 1px 2px 10px rgba(0, 0, 0, 0.1);
+    height: 80px;
+}
+
+.navbar.active .nav-link {
+    color: #265752;
+}
+
+.navbar.active .nav-link:hover,
+.navbar.active .nav-link:focus {
+    color: #0b322b;
+    text-decoration: none;
+}
+
+.navbar.active .navbar-brand {
+    color: #265752;
+}
+
+@media (min-width: 1200px) .container {
+    max-width: 1199px;
+}
+
+
+/* Change navbar styling on small viewports */
+
+@media (max-width: 991.98px) {
+    .navbar {
+        background: #ededef;
+    }
+    .navbar .navbar-brand,
+    .navbar .nav-link {
+        color: #265752;
+    }
+}
+
+.text-small {
+    font-size: 0.9rem !important;
+}
+
+body {
+    min-height: 120vh;
+    background-color: white;
+    background-image: linear-gradient(135deg, white 0%);
+}
+
+#loader {
+    border: 12px solid #f3f3f3;
+    border-radius: 50%;
+    border-top: 12px solid #be6d54;
+    width: 70px;
+    height: 70px;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+.load {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+}
+
+.nav-item.active .nav-link {
+    color: #be6d54;
+    text-decoration: none;
+}
