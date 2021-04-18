@@ -3,7 +3,8 @@
 
 {% block css %}
 .cropdis{
-    margin-top:90px;
+    margin-top:20%;
+    padding-top:50%;
 }
 {% endblock %}
 {% block body %}
@@ -21,9 +22,17 @@
                 <input type="file" class="form-control" id="default-btn" name="myfile" />
             </div>
             <input class="btn btn-primary" type="submit" value="Send" />
+                <div class="wrapper">
+                    <div class="image">
+                    <img src="{{uploaded_file_url}}" alt="" id="upload-img">
+                    </div>
             <div >
                 <h2> Prediction Output:</h2>
                 <h3> {{preds}} </h3>
+                <div>
+                    <h4>{{a}}</h4>
+                    <p> {{content}} </p>
+                </div>
             </div>
     </form>
     
